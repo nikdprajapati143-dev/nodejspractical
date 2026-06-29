@@ -51,7 +51,7 @@ class TaskService {
     }
 
 
-    async getTasks(user: any) {
+    async getTasks(user: any, sort?: string) {
 
         let filter = {};
 
@@ -61,6 +61,9 @@ class TaskService {
                 assignedTo: user._id,
             };
         }
+
+
+        
 
         return Task.find(filter)
             .populate("assignedTo", "name email role")

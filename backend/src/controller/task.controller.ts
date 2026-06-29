@@ -28,7 +28,9 @@ class TaskController {
 
     getTasks = asyncHandler(async (req: Request, res: Response) => {
 
-        const tasks = await taskService.getTasks(req.user);
+        const sort = req.query.sort as string;
+
+        const tasks = await taskService.getTasks(req.user, sort);
 
         return res.json(
             new ApiResponse(
@@ -37,7 +39,6 @@ class TaskController {
                 tasks
             )
         );
-
     });
 
     getTask = asyncHandler(async (req: Request, res: Response) => {

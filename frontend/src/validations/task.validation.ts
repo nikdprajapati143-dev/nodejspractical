@@ -10,7 +10,7 @@ export const taskSchema = yup.object({
 
     description: yup
         .string()
-        .nullable()
+        .required("Description is required")
         .default(""),
 
     assignedTo: yup
