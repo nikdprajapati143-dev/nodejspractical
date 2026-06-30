@@ -15,6 +15,7 @@ import CreateTask from "../pages/tasks/CreateTask";
 
 import { UserRole } from "../types/user.types";
 import EditTask from "../pages/tasks/EditTask";
+import TaskDetails from "../pages/tasks/TaskDetails";
 
 export default function AppRoutes() {
   return (
@@ -52,6 +53,9 @@ export default function AppRoutes() {
                 </ProtectedRoute>
               }
             />
+
+            {/* View Task — accessible by both admin and user */}
+            <Route path="/tasks/:id/view" element={<TaskDetails />} />
 
             {/* <Route element={<RoleRoute role={UserRole.ADMIN} />}>
               <Route path="/admin/dashboard" element={<AdminDashboard />} />

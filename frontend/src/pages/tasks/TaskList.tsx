@@ -30,7 +30,19 @@ export default function TaskList() {
   useEffect(() => {
     const handleStatusUpdated = (data: any) => {
       console.log("Socket Received :", data);
-      toast.success(data.message);
+
+      // Show a styled notification toast for admin
+      toast(data.message, {
+        icon: "🔔",
+        style: {
+          background: "#eff6ff",
+          color: "#1e40af",
+          border: "1px solid #bfdbfe",
+          fontWeight: "500",
+        },
+        duration: 5000,
+      });
+
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
     };
     socket.on("task-status-updated", handleStatusUpdated);

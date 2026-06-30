@@ -287,15 +287,21 @@ class TaskService {
             adminId
         );
 
+        const STATUS_LABELS: Record<string, string> = {
+            "todo": "To Do",
+            "in-progress": "In Progress",
+            "done": "Done",
+        };
+
+        const statusLabel = STATUS_LABELS[status] ?? status;
+        const userName = (populatedTask.assignedTo as any).name;
+        const taskTitle = populatedTask.title;
+
         io.to(adminId).emit(
             "task-status-updated",
             {
-
-                message: `${(populatedTask.assignedTo as any).name
-                    } updated "${populatedTask.title}"`,
-
+                message: `${userName} marked "${taskTitle}" as ${statusLabel}`,
                 task: populatedTask,
-
             }
         );
 
